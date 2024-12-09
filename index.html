@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Growth Solutions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --text-color: #333;
+            --background-color: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo img {
+            max-height: 90px;
+            margin-right: auto;
+            padding-right: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .login-options {
+            display: flex;
+            gap: 15px;
+        }
+
+        .login-options a {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .login-options a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Business Partners Section */
+        .business-partners {
+            text-align: center;
+            padding: 4rem 1rem;
+            background-color: white;
+        }
+
+        .business-partners h2 {
+            margin-bottom: 2rem;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .partner-logo {
+            max-height: 70px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .partner-logos {
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo1.jpg" alt="Business Growth Solutions Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#webinar">Webinar</a></li>
+                <li><a href="#consultation">Consultation</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="login-options">
+            <a href="#" class="login-twitter" aria-label="Login with Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="login-whatsapp" aria-label="Login with WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="login-facebook" aria-label="Login with Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="login-instagram" aria-label="Login with Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Empower Your Business Growth</h1>
+            <p>Expert Strategies, Proven Results</p>
+            <!-- Link to the Signup Page -->
+            <a href="login.html" class="cta-button">Get Started</a>
+        </section>
+        
+
+        <!-- Business Partners Section -->
+        <section class="business-partners">
+            <h2>Trusted by Industry Leaders</h2>
+            <div class="partner-logos">
+                <img src="reliance-logo.jpg" alt="Reliance Industries Logo" class="partner-logo">
+                <img src="tata-logo.jpg" alt="Tata Group Logo" class="partner-logo">
+                <img src="infosys-logo.jpg" alt="Infosys Logo" class="partner-logo">
+                <img src="amazon-logo2.jpg" alt="Amazon Logo" class="partner-logo">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="social-icons">
+            <a href="https://twitter.com/yourbusiness" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://wa.me/+1234567890" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://www.facebook.com/yourbusinesspage" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/yourbusiness" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <p>&copy; 2024 Business Growth Solutions. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+

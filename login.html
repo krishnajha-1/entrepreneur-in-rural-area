@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anywhere App - Account</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+        }
+
+        /* Container Styles */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            width: 90%;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Form Section */
+        .form-section {
+            flex: 1;
+            padding: 40px;
+            min-width: 300px;
+        }
+
+        h2 {
+            color: #6c757d;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #212529;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 15px 0;
+            font-size: 14px;
+        }
+
+        p a {
+            color: #157bc8;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #68b684;
+            box-shadow: 0 0 8px rgba(104, 182, 132, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            background: #157bc8;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            background: #6576a9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image Section */
+        .image-section {
+            flex: 1;
+            min-width: 300px;
+            background: url('enter.jpg') no-repeat center center/cover;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .image-section {
+                height: 200px;
+            }
+
+            .form-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 12px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            input {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+
+        /* Toggle Form Styles */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Registration Form -->
+        <div class="form-section" id="registerForm">
+            <h2>Start for Free</h2>
+            <h1>Create new account</h1>
+            <p>Already a member? <a onclick="toggleForms()">Log In</a></p>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="firstName">First name</label>
+                    <input type="text" id="firstName" placeholder="First name" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastName">Last name</label>
+                    <input type="text" id="lastName" placeholder="Last name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Create account</button>
+            </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-section hidden" id="loginForm">
+            <h2>Welcome Back</h2>
+            <h1>Log In</h1>
+            <p>Don't have an account? <a onclick="toggleForms()">Create an Account</a></p>
+            <form id="loginFormElement">
+                <div class="input-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Log In</button>
+            </form>
+        </div>
+
+        <!-- Image Section -->
+        <div class="image-section"></div>
+    </div>
+
+    <script>
+        // Function to toggle between Login and Register forms
+        function toggleForms() {
+            const registerForm = document.getElementById('registerForm');
+            const loginForm = document.getElementById('loginForm');
+
+            registerForm.classList.toggle('hidden');
+            loginForm.classList.toggle('hidden');
+        }
+
+        // Registration form submit event
+document.getElementById('signupForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    alert('Congratulations! Account created successfully!');
+    
+    // Redirect to another page after a short delay
+    setTimeout(function () {
+        window.location.href = 'home.html'; // Replace with the desired page URL
+    }, 1500); // 1.5 seconds delay for the alert to be seen
+});
+
+        // Login form submit event
+        document.getElementById('loginFormElement').addEventListener('submit', function (event) {
+            event.preventDefault();
+            window.location.href = 'home.html'; // Redirect to the sidebar page
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innohive - Entrepreneurship Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .chart-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .chart-container canvas {
+            max-width: 100% !important;
+            height: 250px !important; /* Default height for all charts */
+        }
+        .pie-chart-container canvas {
+            height: 200px !important; /* Adjusted height for pie charts */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-16 px-4 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-bold mb-4 tracking-tight">Innohive Analytics Dashboard</h1>
+            <p class="text-xl opacity-90">Comprehensive Business Insights & Growth Tracking</p>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="container mx-auto px-4 -mt-12">
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Growth Overview Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Business Growth Trajectory</h2>
+                <div class="chart-container">
+                    <canvas id="growthChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 flex justify-between text-sm text-gray-600">
+                    <div>
+                        <span class="font-bold text-green-600">+25%</span> Year-on-Year Growth
+                    </div>
+                    <div>
+                        Current Valuation: <span class="font-bold">₹2.2M</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Distribution Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Revenue by Sector</h2>
+                <div class="chart-container">
+                    <canvas id="revenueChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-sm text-gray-600 text-center">
+                    Top Performing Sector: <span class="font-bold text-blue-600">Technology (40%)</span>
+                </div>
+            </div>
+
+            <!-- Investment Trends Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Investment Trends (2019-2024)</h2>
+                <div class="chart-container">
+                    <canvas id="investmentChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 flex justify-between text-sm text-gray-600">
+                    <div>Total Investment: <span class="font-bold">₹350B</span></div>
+                    <div>
+                        <span class="font-bold text-green-600">+16.7%</span> vs Previous Year
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entrepreneur Demographics Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Entrepreneur Age Distribution</h2>
+                <div class="chart-container">
+                    <canvas id="demographicsChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-sm text-gray-600 text-center">
+                    Dominant Age Group: <span class="font-bold text-blue-600">31-40 (35%)</span>
+                </div>
+            </div>
+
+            <!-- Expenses, Profit/Loss, and Other Metrics -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Business Metrics</h2>
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Expenses Chart -->
+                    <div class="chart-container">
+                        <h3 class="text-xl font-semibold text-gray-800">Expenses (2024)</h3>
+                        <canvas id="expensesChart" class="w-full h-48"></canvas>
+                    </div>
+                    <!-- Profit/Loss Pie Chart -->
+                    <div class="chart-container">
+                        <h3 class="text-xl font-semibold text-gray-800">Profit/Loss Distribution</h3>
+                        <canvas id="profitLossChart" class="w-full h-48"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Metrics: Salaries, Rent, and Transport -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Additional Metrics</h2>
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Salaries Bar Chart -->
+                    <div class="chart-container">
+                        <h3 class="text-xl font-semibold text-gray-800">Salaries (2024)</h3>
+                        <canvas id="salariesChart" class="w-full h-48"></canvas>
+                    </div>
+                    <!-- Rent and Transport Pie Chart -->
+                    <div class="chart-container">
+                        <h3 class="text-xl font-semibold text-gray-800">Rent vs Transport</h3>
+                        <canvas id="rentTransportChart" class="w-full h-48"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-600">
+        <p>© 2024 Innohive Analytics. All Rights Reserved.</p>
+        <p class="text-sm mt-2">Powered by data-driven insights</p>
+    </footer>
+
+    <script>
+        // Business Growth (Line Chart)
+        const growthData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Business Growth (in ₹)',
+                data: [300, 500, 700, 800, 900, 1200, 1500, 1300, 1600, 1800, 2000, 2200],
+                fill: false,
+                borderColor: '#4caf50',
+                tension: 0.1,
+            }]
+        };
+
+        const growthConfig = {
+            type: 'line',
+            data: growthData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: { x: { beginAtZero: true }, y: { beginAtZero: true } }
+            }
+        };
+
+        // Revenue Distribution (Pie Chart)
+        const revenueData = {
+            labels: ['Technology', 'Retail', 'Healthcare', 'Education', 'Others'],
+            datasets: [{
+                data: [40, 25, 15, 10, 10],
+                backgroundColor: ['#4caf50', '#00bcd4', '#ff9800', '#f44336', '#9c27b0'],
+            }]
+        };
+
+        const revenueConfig = {
+            type: 'pie',
+            data: revenueData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: function(tooltipItem) { return tooltipItem.label + ': ' + tooltipItem.raw + '%'; } } }
+                }
+            }
+        };
+
+        // Expenses (Bar Chart)
+        const expensesData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Expenses (in ₹)',
+                data: [100, 150, 200, 250, 300, 350],
+                backgroundColor: '#ff5722',
+                borderColor: '#ff5722',
+                borderWidth: 1
+            }]
+        };
+
+        const expensesConfig = {
+            type: 'bar',
+            data: expensesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        };
+
+        // Profit/Loss (Pie Chart)
+        const profitLossData = {
+            labels: ['Profit', 'Loss'],
+            datasets: [{
+                data: [70, 30],
+                backgroundColor: ['#4caf50', '#f44336'],
+            }]
+        };
+
+        const profitLossConfig = {
+            type: 'pie',
+            data: profitLossData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: function(tooltipItem) { return tooltipItem.label + ': ' + tooltipItem.raw + '%'; } } }
+                }
+            }
+        };
+
+        // Salaries (Bar Chart)
+        const salariesData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Salaries (in ₹)',
+                data: [150, 180, 200, 250, 280, 320],
+                backgroundColor: '#3f51b5',
+                borderColor: '#3f51b5',
+                borderWidth: 1
+            }]
+        };
+
+        const salariesConfig = {
+            type: 'bar',
+            data: salariesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        };
+
+        // Rent vs Transport (Pie Chart)
+        const rentTransportData = {
+            labels: ['Rent', 'Transport'],
+            datasets: [{
+                data: [60, 40],
+                backgroundColor: ['#ff9800', '#2196f3'],
+            }]
+        };
+
+        const rentTransportConfig = {
+            type: 'pie',
+            data: rentTransportData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: function(tooltipItem) { return tooltipItem.label + ': ' + tooltipItem.raw + '%'; } } }
+                }
+            }
+        };
+
+        // Rendering the charts
+        window.onload = function() {
+            new Chart(document.getElementById('growthChart'), growthConfig);
+            new Chart(document.getElementById('revenueChart'), revenueConfig);
+            new Chart(document.getElementById('investmentChart'), revenueConfig);
+            new Chart(document.getElementById('demographicsChart'), revenueConfig);
+            new Chart(document.getElementById('expensesChart'), expensesConfig);
+            new Chart(document.getElementById('profitLossChart'), profitLossConfig);
+            new Chart(document.getElementById('salariesChart'), salariesConfig);
+            new Chart(document.getElementById('rentTransportChart'), rentTransportConfig);
+        };
+    </script>
+</body>
+</html>

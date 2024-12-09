@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network and Connections</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa; /* light gray background */
+            color: #333; /* dark gray text */
+        }
+        .header {
+            background-color: #333; /* dark gray header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .profile-card {
+            background-color: #ffffff; /* white background for profile cards */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow */
+            border-radius: 10px;
+            width: 250px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .profile-card:hover {
+            transform: scale(1.05);
+        }
+        .profile-img {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px 10px 0 0;
+            object-fit: cover;
+        }
+        .profile-name {
+            font-size: 1.5rem;
+            color: #333; /* dark gray for name */
+            margin-top: 15px;
+        }
+        .profile-description {
+            color: #555; /* medium gray for description text */
+            padding: 10px;
+            font-size: 1rem;
+            display: none;
+            background-color: #f9fafb; /* very light gray background */
+            border-radius: 0 0 10px 10px;
+            margin-top: 10px;
+        }
+        .profile-card:hover .profile-description {
+            display: block;
+        }
+
+        /* Links Styling */
+        a {
+            color: #333; /* dark gray for links */
+            text-decoration: none;
+        }
+        a:hover {
+            color: #1d4ed8; /* blue color on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Network and Connections</h1>
+    </header>
+
+    <section class="container mx-auto py-10">
+        <div class="profile-container">
+
+            <!-- GreenFields AgroTech Profile -->
+            <div class="profile-card">
+                <img src="apas.jpg" alt="GreenFields AgroTech" class="profile-img">
+                <a href="apas.html"><b>GreenFields AgroTech</b></a>
+                <p class="profile-description">
+                    GreenFields AgroTech was founded as a small local farm-to-table produce company aimed at providing fresh, organic vegetables to urban markets in northern India. Neha, a passionate farmer, and Arun, an agricultural expert, noticed the challenges of sourcing high-quality, pesticide-free produce for urban dwellers who were increasingly concerned about food safety and sustainability.
+                </p>
+            </div>
+
+            <!-- TechTonic Innovations Profile -->
+            <div class="profile-card">
+                <img src="cybo.jpg" alt="TechTonic Innovations" class="profile-img">
+                <a href="cybo.html"><b>Techtonic Innovations</b></a>
+                <p class="profile-description">
+                    TechTonic Innovations was founded as a small IT solutions company, initially focused on creating software for local small businesses. Rohit, a software engineer, and Sneha, an expert in business analytics, recognized that many local businesses in Tier 2 and Tier 3 cities lacked access to advanced software tools and technology to streamline their operations. They began by offering affordable, custom solutions for small retailers and manufacturers.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // JavaScript code to handle hover effect (optional, as it's already done in CSS)
+    </script>
+
+</body>
+</html>

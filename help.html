@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Desk - Entrepreneur Support</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.8;
+            padding-top: 70px;
+        }
+
+        /* Header */
+        header {
+            background-color: #2980b9;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 28px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section Styles */
+        section {
+            background-color: #fff;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* FAQ Section */
+        .faq-category {
+            margin-top: 20px;
+        }
+
+        .faq-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            text-align: left;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .faq-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .answer {
+            display: none;
+            margin-left: 20px;
+            font-size: 16px;
+            color: #555;
+            padding: 12px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Live Chat Section */
+        .chat-box {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .chat-box p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .chat-input {
+            width: 80%;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .chat-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        .chat-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .chat-messages {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: scroll;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Contact Form */
+        textarea, .select-field, .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Forum and Knowledge Base */
+        .forum-btn, .knowledge-link {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .forum-btn:hover, .knowledge-link:hover {
+            background-color: #2ecc71;
+        }
+
+        .knowledge-link {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2980b9;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Help Desk - Entrepreneur Support</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#faq-section">FAQ</a></li>
+                    <li><a href="#contact-form">Contact</a></li>
+                    <li><a href="#forum">Forum</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- FAQ Section -->
+        <section id="faq-section">
+            <h2>FAQs Section</h2>
+            <input type="text" id="search-bar" placeholder="Search FAQs..." onkeyup="searchFAQ()" class="search-bar">
+            <div class="faq-category">
+                <h3>Starting a Business</h3>
+                <ul>
+                    <li><button onclick="toggleAnswer('start-business1')" class="faq-btn">How to start my own business?</button></li>
+                    <li><button onclick="toggleAnswer('start-business2')" class="faq-btn">What legal steps do I need to take?</button></li>
+                </ul>
+                <div id="start-business1" class="answer">You need to choose a business idea, register your business, and build a business plan.</div>
+                <div id="start-business2" class="answer">You’ll need to register your business with relevant authorities and choose a legal structure (LLC, Sole Proprietorship, etc.).</div>
+            </div>
+            <div class="faq-category">
+                <h3>Funding</h3>
+                <ul>
+                    <li><button onclick="toggleAnswer('funding1')" class="faq-btn">Where can I find funding for my startup?</button></li>
+                    <li><button onclick="toggleAnswer('funding2')" class="faq-btn">What types of funding are available?</button></li>
+                </ul>
+                <div id="funding1" class="answer">You can approach angel investors, venture capitalists, or crowdfunding platforms.</div>
+                <div id="funding2" class="answer">Types include seed funding, venture capital, grants, and loans.</div>
+            </div>
+            <div class="faq-category">
+                <h3>Marketing</h3>
+                <ul>
+                    <li><button onclick="toggleAnswer('marketing1')" class="faq-btn">How to market my startup?</button></li>
+                    <li><button onclick="toggleAnswer('marketing2')" class="faq-btn">What are the best marketing channels?</button></li>
+                </ul>
+                <div id="marketing1" class="answer">You can use social media, content marketing, SEO, and paid ads to promote your startup.</div>
+                <div id="marketing2" class="answer">Best channels include Facebook, Google Ads, email marketing, and influencer marketing.</div>
+            </div>
+        </section>
+
+        <!-- Live Chat Section -->
+        <section id="live-chat">
+            <h2>Live Chat Support</h2>
+            <div class="chat-box">
+                <p>Ask us anything! Our support team will reply shortly.</p>
+                <input type="text" id="chat-input" placeholder="Type your question..." class="chat-input">
+                <button onclick="sendMessage()" class="chat-btn">Send</button>
+                <div id="chat-messages" class="chat-messages"></div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact-form">
+            <h2>Contact Form</h2>
+            <form id="contact-form" class="contact-form">
+                <label for="issue-category">Select Issue Category:</label>
+                <select id="issue-category" class="select-field">
+                    <option value="technical-support">Technical Support</option>
+                    <option value="business-advice">Business Advice</option>
+                    <option value="general-inquiry">General Inquiry</option>
+                </select>
+                <br><br>
+                <label for="message">Describe your issue:</label>
+                <textarea id="message" rows="5" placeholder="Your message" class="textarea-field"></textarea>
+                <br><br>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </section>
+
+        <!-- Community Forum Section -->
+        <section id="forum">
+            <h2>Community Forum</h2>
+            <p>Join the discussion with fellow entrepreneurs! Share your ideas, ask questions, and collaborate.</p>
+            <button onclick="window.location.href='forum.html'" class="forum-btn">Go to Forum</button>
+        </section>
+
+        <!-- Knowledge Base Section -->
+        <section id="knowledge-base">
+            <h2>Knowledge Base</h2>
+            <ul>
+                <li><a href="#" class="knowledge-link">How to Write a Business Plan</a></li>
+                <li><a href="#" class="knowledge-link">Best Tools for Startups</a></li>
+                <li><a href="#" class="knowledge-link">How to Pitch Your Business to Investors</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Entrepreneur Support. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle FAQ Answer visibility
+        function toggleAnswer(answerId) {
+            const answer = document.getElementById(answerId);
+            answer.style.display = (answer.style.display === "block") ? "none" : "block";
+        }
+
+        // Search FAQ based on user input
+        function searchFAQ() {
+            const searchInput = document.getElementById("search-bar").value.toLowerCase();
+            const faqCategories = document.querySelectorAll(".faq-category");
+
+            faqCategories.forEach(category => {
+                const questions = category.querySelectorAll("li");
+                let found = false;
+                questions.forEach(question => {
+                    const questionText = question.textContent.toLowerCase();
+                    if (questionText.includes(searchInput)) {
+                        question.style.display = "block";
+                        found = true;
+                    } else {
+                        question.style.display = "none";
+                    }
+                });
+
+                category.style.display = found ? "block" : "none";
+            });
+        }
+
+        // Handle live chat message sending
+        function sendMessage() {
+            const chatInput = document.getElementById("chat-input");
+            const messageText = chatInput.value.trim();
+            if (messageText) {
+                const chatMessages = document.getElementById("chat-messages");
+                const newMessage = document.createElement("div");
+                newMessage.textContent = `You: ${messageText}`;
+                chatMessages.appendChild(newMessage);
+                chatInput.value = "";
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Form submission (simple example)
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Your message has been submitted!");
+        });
+    </script>
+</body>
+</html>

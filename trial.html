@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techtonic Innovations - Data Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f5ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #00b4d8;
+        }
+
+        nav {
+            background-color: #00b4d8;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .metric {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 30%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .metric h3 {
+            color: #00b4d8;
+            margin-bottom: 10px;
+        }
+
+        .metric p {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 40px;
+        }
+
+        .table-container {
+            margin-top: 40px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #00b4d8;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Techtonic Innovations - Previous Year Data Analysis</h1>
+        </header>
+        <nav>
+            <a href="#">Overview</a>
+            <a href="#">Product Data</a>
+            <a href="#">Market Stats</a>
+            <a href="#">Trends</a>
+        </nav>
+
+        <!-- Key Metrics -->
+        <div class="metrics">
+            <div class="metric">
+                <h3>Total Revenue</h3>
+                <p id="total-revenue">$3,500,000</p>
+            </div>
+            <div class="metric">
+                <h3>New Products</h3>
+                <p id="new-products">25</p>
+            </div>
+            <div class="metric">
+                <h3>Innovation Score</h3>
+                <p id="innovation-score">90%</p>
+            </div>
+        </div>
+
+        <!-- Yearly Data Chart -->
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+        <!-- Yearly Revenue Data Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Revenue ($)</th>
+                        <th>New Products</th>
+                        <th>Innovation (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="revenue-data">
+                    <!-- Data will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        // Sample data for Techtonic Innovations
+        const revenueData = [
+            { month: 'January', revenue: 250000, products: 3, innovation: 85 },
+            { month: 'February', revenue: 300000, products: 4, innovation: 87 },
+            { month: 'March', revenue: 350000, products: 5, innovation: 88 },
+            { month: 'April', revenue: 400000, products: 3, innovation: 89 },
+            { month: 'May', revenue: 450000, products: 2, innovation: 90 },
+            { month: 'June', revenue: 400000, products: 3, innovation: 88 },
+            { month: 'July', revenue: 500000, products: 4, innovation: 90 },
+            { month: 'August', revenue: 550000, products: 5, innovation: 91 },
+            { month: 'September', revenue: 600000, products: 6, innovation: 92 },
+            { month: 'October', revenue: 450000, products: 3, innovation: 89 },
+            { month: 'November', revenue: 550000, products: 4, innovation: 91 },
+            { month: 'December', revenue: 650000, products: 7, innovation: 93 }
+        ];
+
+        // Dynamically generate table rows for revenue data
+        const revenueTable = document.getElementById('revenue-data');
+        revenueData.forEach(data => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${data.month}</td>
+                <td>${data.revenue.toLocaleString()}</td>
+                <td>${data.products}</td>
+                <td>${data.innovation}%</td>
+            `;
+            revenueTable.appendChild(row);
+        });
+
+        // Setup chart.js to display revenue trends
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: revenueData.map(data => data.month),
+                datasets: [{
+                    label: 'Revenue ($)',
+                    data: revenueData.map(data => data.revenue),
+                    backgroundColor: '#00b4d8',
+                    borderColor: '#007f99',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { 
+                        beginAtZero: true 
+                    },
+                    y: { 
+                        beginAtZero: true 
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

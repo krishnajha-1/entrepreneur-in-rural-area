@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Business Advisor</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --background-light: #f0f4f7;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --user-message-bg: #e6f2ff;
+            --bot-message-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .chat-wrapper {
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 85vh;
+        }
+
+        .chat-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .chat-header .header-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .header-icon:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: var(--white);
+        }
+
+        .message-area {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .bot-avatar {
+            width: 35px;
+            height: 35px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .user-message, .bot-message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: var(--user-message-bg);
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot-message {
+            background-color: var(--bot-message-bg);
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .input-area {
+            display: flex;
+            padding: 15px;
+            background-color: var(--white);
+            border-top: 1px solid #e9ecef;
+        }
+
+        #message-input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        #message-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        #send-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 20px;
+            margin-left: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+
+        #send-button i {
+            margin-left: 5px;
+        }
+
+        .typing-indicator {
+            display: none;
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            padding: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--secondary-color);
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .chat-wrapper {
+                width: 95%;
+                max-height: 95vh;
+            }
+        }
+
+        /* Scrollbar Styling */
+        #chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chat-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #chat-container::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-wrapper">
+        <div class="chat-header">
+            <i class="fas fa-robot header-icon"></i>
+            <h1>Small Business Advisor</h1>
+            <i class="fas fa-sync header-icon" id="reset-button" title="Reset Conversation"></i>
+        </div>
+        
+        <div id="chat-container">
+            <div class="empty-state">
+                <p>Ask me anything about starting or running a small business!</p>
+            </div>
+        </div>
+
+        <div class="typing-indicator">
+            Assistant is typing...
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="message-input" placeholder="Type your message..." autocomplete="off" aria-label="Chat message input">
+            <button id="send-button" aria-label="Send message">
+                Send <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        async function initializeChatbot() {
+            let pyodide = await loadPyodide();
+
+            await pyodide.loadPackagesFromImports(`
+                import random
+                import re
+                import json
+                from datetime import datetime, timedelta
+            `);
+
+            await pyodide.runPythonAsync(`
+import random
+import re
+import json
+from datetime import datetime, timedelta
+
+class ProfessionalSmallBusinessChatbot:
+    def __init__(self, memory_file='chatbot_memory.json'):
+        self.business_knowledge = {
+            'startup': {
+                'keywords': ['start', 'launch', 'begin', 'startup'],
+                'responses': [
+                    "To begin a successful small business, follow these key steps:\\n"
+                    "1. Develop a clear and actionable business idea\\n"
+                    "2. Create a comprehensive business plan\\n"
+                    "3. Conduct thorough market research\\n"
+                    "4. Secure appropriate initial funding\\n"
+                    "5. Legally register your business"
+                ]
+            },
+            'funding': {
+                'keywords': ['money', 'funding', 'investment', 'capital'],
+                'responses': [
+                    "There are various options for small business funding:\\n"
+                    "- Small Business Administration (SBA) loans\\n"
+                    "- Traditional bank loans\\n"
+                    "- Angel investors\\n"
+                    "- Venture capital\\n"
+                    "- Crowdfunding platforms"
+                ]
+            },
+            'marketing': {
+                'keywords': ['market', 'promote', 'advertising', 'sales'],
+                'responses': [
+                    "Effective marketing strategies for small businesses include:\\n"
+                    "1. Identifying and understanding your target audience\\n"
+                    "2. Building a strong online presence\\n"
+                    "3. Utilizing social media marketing\\n"
+                    "4. Creating compelling content marketing\\n"
+                    "5. Networking and relationship building"
+                ]
+            }
+        }
+
+        self.user_context = {
+            'current_topic': None,
+            'interaction_count': 0,
+            'last_interaction': datetime.now().isoformat(),
+            'learned_queries': {}
+        }
+
+        self.interaction_log = []
+        self.follow_up_questions = [
+            "Would you like further details on this topic?",
+            "Can you elaborate on your business needs?",
+            "How does this align with your business objectives?",
+            "What challenges are you currently facing?"
+        ]
+
+        self.greeting_responses = [
+            "Hello! I'm here to assist with any small business questions you may have.",
+            "Good day! How can I support your entrepreneurial journey today?",
+            "Greetings! I'm at your service to help with your business queries."
+        ]
+
+    def generate_contextual_response(self, user_input):
+        greeting_patterns = [r'hi', r'hello', r'hey', r'greetings']
+        if any(re.search(pattern, user_input.lower()) for pattern in greeting_patterns):
+            return random.choice(self.greeting_responses)
+
+        current_time = datetime.now()
+        last_interaction_time = datetime.fromisoformat(self.user_context.get('last_interaction', current_time.isoformat()))
+        time_since_last_interaction = current_time - last_interaction_time
+        if time_since_last_interaction > timedelta(hours=1):
+            self.user_context['current_topic'] = None
+
+        base_response = self.find_best_response(user_input)
+
+        if random.random() < 0.3:
+            base_response += "\\n\\n" + random.choice(self.follow_up_questions)
+
+        return base_response
+
+    def find_best_response(self, user_input):
+        user_input = user_input.lower()
+
+        if user_input in self.user_context['learned_queries']:
+            return self.user_context['learned_queries'][user_input]['response']
+
+        for topic, data in self.business_knowledge.items():
+            if any(keyword in user_input for keyword in data['keywords']):
+                return random.choice(data['responses'])
+
+        fallback_responses = [
+            "That's an interesting query! Could you please provide more details?",
+            "This seems like a complex question. Would you mind elaborating?",
+            "I don't have a direct answer to that, but I can offer general business advice."
+        ]
+
+        return random.choice(fallback_responses)
+
+# Create an instance of the chatbot
+chatbot = ProfessionalSmallBusinessChatbot()
+            `);
+
+            return pyodide;
+        }
+
+        let pyodide;
+        const chatContainer = document.getElementById('chat-container');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const typingIndicator = document.querySelector('.typing-indicator');
+        const resetButton = document.getElementById('reset-button');
+        const emptyState = document.querySelector('.empty-state');
+
+        function createMessageElement(message, type) {
+            const messageArea = document.createElement('div');
+            messageArea.classList.add('message-area');
+
+            if (type === 'bot') {
+                const avatar = document.createElement('div');
+                avatar.classList.add('bot-avatar');
+                avatar.textContent = 'AI';
+                messageArea.appendChild(avatar);
+            }
+
+            const messageEl = document.createElement('div');
+            messageEl.classList.add(type + '-message');
+            messageEl.textContent = message;
+            messageArea.appendChild(messageEl);
+
+            return messageArea;
+        }
+
+        async function sendMessage() {
+            const userMessage = messageInput.value.trim();
+
+            if (!userMessage) return;
+
+            // Remove empty state if it's the first message
+            if (emptyState) {
+                emptyState.remove();
+            }
+
+            // Add user message
+            chatContainer.appendChild(createMessageElement(userMessage, 'user'));
+            
+            // Show typing indicator
+            typingIndicator.style.display = 'block';
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Clear input
+            messageInput.value = '';
+
+            try {
+                const response = await pyodide.runPythonAsync(`
+chatbot.generate_contextual_response('${userMessage}')
+                `);
+
+                // Hide typing indicator
+                typingIndicator.style.display = 'none';
+
+                // Add bot message
+                chatContainer.appendChild(createMessageElement(response, 'bot'));
+
+                // Scroll to bottom
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            } catch (error) {
+                console.error('Error processing message:', error);
+                typingIndicator.style.display = 'none';
+                chatContainer.appendChild(createMessageElement('Sorry, I encountered an error.', 'bot'));
+            }
+        }
+
+        function resetChat() {
+            chatContainer.innerHTML = `
+                <div class="empty-state">
+                    <p>Ask me anything about starting or running a small business!</p>
+                </div>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            pyodide = await initializeChatbot();
+            
+            // Send message on button click
+            sendButton.addEventListener('click', sendMessage);
+
+            // Send message on Enter key press
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Prevent default Enter key behavior
+                    sendMessage();
+                }
+            });
+
+            // Reset chat functionality
+            resetButton.addEventListener('click', resetChat);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories of Indian Entrepreneurs</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Header */
+        header {
+            background-color: #2d3436;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* Container for Stories */
+        .container {
+            max-width: 100%; /* Ensure the container does not exceed the viewport width */
+            margin: 30px auto;
+            padding: 20px;
+            flex-grow: 1;
+            box-sizing: border-box; /* Include padding in element's total width calculation */
+        }
+
+        /* Story Cards */
+        .story {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%; /* Ensure the card width doesn't overflow */
+            box-sizing: border-box;
+        }
+
+        .story:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .story h2 {
+            font-size: 1.8rem;
+            color: #1abc9c;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .story-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Button */
+        button {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #16a085;
+            transform: scale(1.05);
+        }
+
+        /* Hidden Text */
+        .story-full-text {
+            display: none;
+            margin-top: 15px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2d3436;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 10px;
+            width: 100%;
+            position: relative;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .story h2 {
+                font-size: 1.6rem;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>Business Success Stories</h1>
+            <p>Learn how entrepreneurs in India turned their dreams into successful ventures.</p>
+        </div>
+    </header>
+
+    <!-- Stories Section -->
+    <div class="container">
+        <div class="story" id="story1">
+            <h2>Story 1: Overcoming Challenges in Rural India</h2>
+            <p class="story-description">Krishna's journey began in rural Rajasthan, where he faced the challenges of providing basic education resources. He started a low-cost e-learning initiative, quickly gaining recognition in local villages.</p>
+            <button onclick="toggleStory('story1')">Read More</button>
+            <div class="story-full-text">
+                <p>In 2012, Raghav launched an online platform to provide affordable educational content to students in rural Rajasthan. Despite challenges like poor internet connectivity, he collaborated with local schools and launched mobile-based learning modules. By 2015, the initiative reached 50 villages, bringing quality education to thousands of children.</p>
+            </div>
+        </div>
+
+        <div class="story" id="story2">
+            <h2>Story 2: Innovating in the Food Industry</h2>
+            <p class="story-description">Adarsh moved to Delhi and saw an opportunity to innovate in the food delivery industry. He introduced a plant-based meal service targeting health-conscious urban professionals.</p>
+            <button onclick="toggleStory('story2')">Read More</button>
+            <div class="story-full-text">
+                <p>In 2017, Raghav started a plant-based meal subscription service. With a focus on organic ingredients and eco-friendly packaging, his meals quickly became popular among urban professionals. By 2019, the service expanded to Mumbai and Bengaluru, becoming a pioneer in sustainable food in India.</p>
+            </div>
+        </div>
+
+        <div class="story" id="story3">
+            <h2>Story 3: Expanding Nationwide</h2>
+            <p class="story-description">By 2020, Mrinal's business had grown, prompting him to enter the e-commerce space with a focus on sustainable products.</p>
+            <button onclick="toggleStory('story3')">Read More</button>
+            <div class="story-full-text">
+                <p>Building on his food business success, Raghav launched an e-commerce platform in 2021, offering eco-friendly products. His online marketplace, ranging from bamboo toothbrushes to reusable bottles, quickly became a trusted brand among eco-conscious consumers. By 2023, it was one of India’s top green product platforms.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Raghav's Success Stories. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Function to toggle the "Read More" text
+        function toggleStory(storyId) {
+            const story = document.getElementById(storyId);
+            const fullText = story.querySelector('.story-full-text');
+            const button = story.querySelector('button');
+
+            if (fullText.style.display === 'block') {
+                fullText.style.display = 'none';
+                button.textContent = 'Read More';
+            } else {
+                fullText.style.display = 'block';
+                button.textContent = 'Read Less';
+            }
+        }
+    </script>
+
+</body>
+</html>

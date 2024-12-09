@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Investors in India</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Link to custom styles -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 20px;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .chart-container {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .chart {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .investors-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .investor-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .investor-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .investor-card h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .investor-card p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .details-btn {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .details-btn:hover {
+            background-color: #555;
+        }
+
+        .investor-details {
+            display: none;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .investor-details a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .investor-details a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Individual Investors in India</h1>
+        <p>Explore the top individual investors and statistics about individual investing trends in India.</p>
+    </header>
+
+    <div class="container">
+        <!-- Investor Info Section -->
+        <section class="investors-container">
+            
+            <!-- Investor 1 -->
+            <div class="investor-card">
+                <h2>Ratan Tata</h2>
+                <p>Industrialist, former Chairman of Tata Group, and an investor in multiple startups.</p>
+                <a href="rt.html" class="details-btn">More Details</a>
+                <div id="investor1" class="investor-details">
+                    <p>Ratan Tata is a prominent figure in Indian business and has invested in several startups, including the e-commerce platform Snapdeal and the electric vehicle company, Tork Motors.</p>
+                    <a href="https://www.tata.com/" target="_blank">Visit Tata Group</a>
+                </div>
+            </div>
+
+            <!-- Investor 2 -->
+            <div class="investor-card">
+                <h2>Naval Ravikant</h2>
+                <p>Founder of AngelList and a major angel investor in startups.</p>
+                <a href="nr.html" class="details-btn">More Details</a>
+                <div id="investor2" class="investor-details">
+                    <p>Naval Ravikant is known for his early-stage investments in companies like Twitter, Uber, and many others through AngelList. He is also a thought leader and angel investor.</p>
+                    <a href="https://angel.co/naval" target="_blank">Visit AngelList Profile</a>
+                </div>
+            </div>
+
+            <!-- Investor 3 -->
+            <div class="investor-card" onclick="toggleDetails('investor3')">
+                <h2>Vineeta Singh</h2>
+                <p>Co-founder and CEO of SUGAR Cosmetics, an investor on Shark Tank India.</p>
+                <a href="vs.html" class="details-btn">More Details</a>
+                <div id="investor3" class="investor-details">
+                    <p>Vineeta Singh is an investor and entrepreneur, known for her appearance on Shark Tank India. She has invested in various startups and supports women entrepreneurs in the beauty and wellness industry.</p>
+                    <a href="https://www.sugarcosmetics.com/" target="_blank">Visit SUGAR Cosmetics</a>
+                </div>
+            </div>
+
+            <!-- Investor 4 -->
+            <div class="investor-card" onclick="toggleDetails('investor4')">
+                <h2>Anupam Mittal</h2>
+                <p>Founder of People Group and an investor on Shark Tank India.</p>
+                <button class="details-btn">More Details</button>
+                <div id="investor4" class="investor-details">
+                    <p>Anupam Mittal is a well-known angel investor and founder of People Group (which owns Shaadi.com). He invests in a wide range of sectors including online matchmaking, fintech, and consumer services.</p>
+                    <a href="https://www.peoplegroup.in/" target="_blank">Visit People Group</a>
+                </div>
+            </div>
+
+            <!-- Investor 5 -->
+            <div class="investor-card" onclick="toggleDetails('investor5')">
+                <h2>Shark Tank India Investors</h2>
+                <p>A collective of prominent investors in India who appear on Shark Tank India.</p>
+                <button class="details-btn">More Details</button>
+                <div id="investor5" class="investor-details">
+                    <p>Shark Tank India features several top investors, including Aman Gupta, Ghazal Alagh, Ashneer Grover, and others. These investors provide capital and mentorship to emerging businesses in India.</p>
+                    <a href="https://www.sonyliv.com/shows/shark-tank-india-1700000690" target="_blank">Watch Shark Tank India</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pie Chart Section -->
+        <section>
+            <h2 class="section-title">Investor Distribution by Sector</h2>
+            <div class="chart-container">
+                <canvas id="sectorChart" class="chart"></canvas>
+            </div>
+        </section>
+
+        <!-- Bar Chart Section -->
+        <section>
+            <h2 class="section-title">Investment Trends Over Time (2019-2024)</h2>
+            <div class="chart-container">
+                <canvas id="trendChart" class="chart"></canvas>
+            </div>
+        </section>
+
+        <!-- Investors by Age Group -->
+        <section>
+            <h2 class="section-title">Investors by Age Group</h2>
+            <div class="chart-container">
+                <canvas id="ageGroupChart" class="chart"></canvas>
+            </div>
+        </section>
+
+        <!-- Investor Insights -->
+        <section>
+            <div class="card">
+                <h3>Total Individual Investors in India</h3>
+                <p>There are more than 50 million individual investors in India as of 2023, showing a significant increase in participation in equity and mutual funds.</p>
+            </div>
+
+            <div class="card">
+                <h3>Most Popular Investment Sector</h3>
+                <p>The majority of individual investors focus on the equity market, followed by mutual funds and real estate investments.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Individual Investors in India | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Function to toggle the visibility of the investor details
+        function toggleDetails(investorId) {
+            const details = document.getElementById(investorId);
+
+            if (details.style.display === "block") {
+                details.style.display = "none";
+            } else {
+                details.style.display = "block";
+            }
+        }
+
+        // Pie chart for sector distribution
+        const sectorCtx = document.getElementById('sectorChart').getContext('2d');
+        const sectorChart = new Chart(sectorCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Technology', 'Healthcare', 'Fintech', 'E-commerce', 'Consumer Goods', 'Others'],
+                datasets: [{
+                    data: [35, 20, 15, 10, 5, 15],
+                    backgroundColor: ['#55a0a0', '#98d1a6', '#fcdb3a', '#cc4f3e', '#3e98cc', '#ba75e5'],
+                }]
+            }
+        });
+
+        // Bar chart for investment trends over time
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        const trendChart = new Chart(trendCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Investment Volume (in Billion USD)',
+                    data: [10, 15, 25, 35, 40, 45],
+                    backgroundColor: '#55a0a0',
+                    borderColor: '#333',
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Bar chart for age group distribution
+        const ageGroupCtx = document.getElementById('ageGroupChart').getContext('2d');
+        const ageGroupChart = new Chart(ageGroupCtx, {
+            type: 'bar',
+            data: {
+                labels: ['18-25', '26-35', '36-45', '46-55', '56+'],
+                datasets: [{
+                    label: 'Number of Investors',
+                    data: [5000000, 15000000, 12000000, 10000000, 5000000],
+                    backgroundColor: '#fcdb3a',
+                    borderColor: '#333',
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+
+</body>
+
+</html>

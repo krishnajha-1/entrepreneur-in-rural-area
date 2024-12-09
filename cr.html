@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Relationship Management Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .dashboard {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #2980b9;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 18px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #f1f1f1;
+            color: #2980b9;
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        tr:hover {
+            background-color: #ecf0f1;
+            cursor: pointer;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            width: 100%;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .chart-container canvas {
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Performance & Support Section */
+        .performance, .support, .sales-tracking, .marketing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .performance .metric, .support .support-stat, .sales-tracking .stat, .marketing .stat {
+            width: 48%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .performance .metric, .sales-tracking .stat {
+            background: linear-gradient(135deg, #2980b9, #6dd5ed);
+            color: #fff;
+        }
+
+        .support .support-stat, .marketing .stat {
+            background: #f39c12;
+            color: #fff;
+        }
+
+        .metric-title, .stat-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .metric-value, .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .performance .metric, .support .support-stat, .sales-tracking .stat, .marketing .stat {
+            transition: all 0.3s ease;
+        }
+
+        .performance .metric:hover, .support .support-stat:hover, .sales-tracking .stat:hover, .marketing .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .performance .metric, .support .support-stat, .sales-tracking .stat, .marketing .stat {
+                width: 100%;
+            }
+
+            table th, table td {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <!-- Header -->
+        <header>
+            <h1>CRM Dashboard</h1>
+        </header>
+
+        <!-- Customer Data Section -->
+        <section class="customer-data">
+            <h2>Customer Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Points</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="customer-table">
+                    <!-- Dynamic Customer Data will be added here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="analytics">
+            <h2>Sales Analytics</h2>
+            <div class="chart-container">
+                <canvas id="sales-chart"></canvas>
+            </div>
+        </section>
+
+        <!-- Performance & Support Section -->
+        <section class="performance-support">
+            <h2>Performance & Support</h2>
+            <div class="performance">
+                <h3>Performance Metrics</h3>
+                <div class="metric">
+                    <div class="metric-title">Conversion Rate</div>
+                    <div id="conversion-rate" class="metric-value">80%</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-title">Customer Satisfaction</div>
+                    <div id="satisfaction" class="metric-value">90%</div>
+                </div>
+            </div>
+            <div class="support">
+                <h3>Support Overview</h3>
+                <div class="support-stat">
+                    <div class="stat-title">Tickets Open</div>
+                    <div id="tickets-open" class="stat-value">75</div>
+                </div>
+                <div class="support-stat">
+                    <div class="stat-title">Tickets Closed</div>
+                    <div id="tickets-closed" class="stat-value">70</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sales & Marketing Section -->
+        <section class="sales-marketing">
+            <h2>Sales & Marketing</h2>
+            <div class="sales-tracking">
+                <h3>Sales Tracking</h3>
+                <div class="stat">
+                    <div class="stat-title">Total Sales</div>
+                    <div id="total-sales" class="stat-value">$400,000</div>
+                </div>
+            </div>
+            <div class="marketing">
+                <h3>Marketing Insights</h3>
+                <div class="stat">
+                    <div class="stat-title">Email Campaigns Sent</div>
+                    <div id="campaigns-sent" class="stat-value">180</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Social Media Reach</div>
+                    <div id="social-reach" class="stat-value">700k</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Sample data for customers
+        const customers = [
+            { name: "John Doe", email: "john@example.com", points: 150, status: "Active" },
+            { name: "Jane Smith", email: "jane@example.com", points: 200, status: "Inactive" },
+            { name: "Mike Johnson", email: "mike@example.com", points: 180, status: "Active" },
+            { name: "Emma Brown", email: "emma@example.com", points: 220, status: "Active" }
+        ];
+
+        // Populate customer data in the table
+        const customerTable = document.getElementById("customer-table");
+        customers.forEach(customer => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${customer.name}</td>
+                <td>${customer.email}</td>
+                <td>${customer.points}</td>
+                <td>${customer.status}</td>
+            `;
+            customerTable.appendChild(row);
+        });
+
+        // Sample data for sales analytics chart
+        const salesData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Sales (₹)',
+                data: [15000, 20000, 25000, 30000, 35000, 40000],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Create the sales chart using Chart.js
+        const ctx = document.getElementById('sales-chart').getContext('2d');
+        const salesChart = new Chart(ctx, {
+            type: 'line',
+            data: salesData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

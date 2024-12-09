@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Tools</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Basic CSS for Layout */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Tabs and Content Layout */
+        .tabs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            text-transform: uppercase;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            width: 80%;
+            max-width: 250px;
+            text-align: center;
+        }
+
+        .tab:hover {
+            background-color: #555;
+        }
+
+        /* Content Boxes */
+        .content-box {
+            display: none;
+            width: 80%;
+            max-width: 1000px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="number"] {
+            padding: 12px;
+            margin-top: 8px;
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"]:focus {
+            border-color: #333;
+            outline: none;
+        }
+
+        canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            form, canvas {
+                width: 90%;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Business Tools</h1>
+        <div class="tabs">
+            <button class="tab" onclick="showContent('analytics')">Analytics & Reporting</button>
+            <button class="tab" onclick="showContent('customer')">Customer Relation</button>
+            <button class="tab" onclick="showContent('inventory')">Inventory Management</button>
+            <button class="tab" onclick="showContent('collaboration')">Collaboration</button>
+            <button class="tab" onclick="showContent('fundraising')">Raise Fund</button>
+        </div>
+
+        <div id="analytics" class="content-box">
+            <h2>Analytics & Reporting</h2>
+            <div class="form-container">
+                <form id="data-form">
+                    <label for="salaries">Salaries:</label>
+                    <input type="number" id="salaries" value="0">
+                    <label for="rents">Rents:</label>
+                    <input type="number" id="rents" value="0">
+                    <label for="profits">Profits:</label>
+                    <input type="number" id="profits" value="0">
+                    <label for="expenses">Expenses:</label>
+                    <input type="number" id="expenses" value="0">
+                    <label for="taxes">Taxes:</label>
+                    <input type="number" id="taxes" value="0">
+                </form>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <div id="customer" class="content-box">Customer Relation content</div>
+        <div id="inventory" class="content-box">Inventory Management content</div>
+        <div id="collaboration" class="content-box">Collaboration content</div>
+        <div id="fundraising" class="content-box">Raise Fund content</div>
+    </div>
+
+    <script>
+        let pieChart;
+
+        // Function to show content based on the clicked subtopic
+        function showContent(contentId) {
+            // Redirect to the corresponding HTML page based on the tab clicked
+            if (contentId === 'analytics') {
+                window.location.href = 'aar.html'; // Redirect to aar.html when the Analytics & Reporting tab is clicked
+            } else if (contentId === 'customer') {
+                window.location.href = 'cr.html'; // Redirect to cr.html when the Customer Relation tab is clicked
+            } else if (contentId === 'inventory') {
+                window.location.href = 'im.html'; // Redirect to im.html when the Inventory Management tab is clicked
+            } else {
+                console.log('Other section clicked: ' + contentId);
+            }
+        }
+
+        // Function to update the pie chart with real-time data from the input fields
+        function updatePieChart() {
+            const salaries = parseFloat(document.getElementById("salaries").value) || 0;
+            const rents = parseFloat(document.getElementById("rents").value) || 0;
+            const profits = parseFloat(document.getElementById("profits").value) || 0;
+            const expenses = parseFloat(document.getElementById("expenses").value) || 0;
+            const taxes = parseFloat(document.getElementById("taxes").value) || 0;
+
+            const total = salaries + rents + profits + expenses + taxes;
+
+            if (total === 0) return;
+
+            pieChart.data.datasets[0].data = [
+                (salaries / total) * 100,
+                (rents / total) * 100,
+                (profits / total) * 100,
+                (expenses / total) * 100,
+                (taxes / total) * 100
+            ];
+
+            pieChart.update();
+        }
+
+        // Initialize the pie chart
+        function initializeChart() {
+            const ctx = document.getElementById('pieChart').getContext('2d');
+            pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Salaries', 'Rents', 'Profits', 'Expenses', 'Taxes'],
+                    datasets: [{
+                        label: 'Business Distribution',
+                        data: [20, 20, 20, 20, 20],
+                        backgroundColor: ['#FF5733', '#33FF57', '#3357FF', '#FF33A8', '#FFB533'],
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    const label = tooltipItem.label || '';
+                                    const value = tooltipItem.raw;
+                                    return label + ': ' + value.toFixed(2) + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Attach event listeners to inputs to update the chart in real-time
+        document.getElementById("salaries").addEventListener("input", updatePieChart);
+        document.getElementById("rents").addEventListener("input", updatePieChart);
+        document.getElementById("profits").addEventListener("input", updatePieChart);
+        document.getElementById("expenses").addEventListener("input", updatePieChart);
+        document.getElementById("taxes").addEventListener("input", updatePieChart);
+
+        // Initialize the chart when the page is ready
+        window.onload = function() {
+            initializeChart();
+        };
+    </script>
+</body>
+</html>

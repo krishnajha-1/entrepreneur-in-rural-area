@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Schemes for Small Businesses</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%; /* Ensure full height */
+            background-color: #f4f4f4; /* Page-wide background */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+            min-height: 100vh; /* Ensure minimum full viewport height */
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background-color: #f0f0f0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #555;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #777;
+        }
+
+        .schemes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .scheme-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .scheme-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .scheme-card h2 {
+            font-size: 22px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .scheme-card p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .details-btn {
+            background-color: #666;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .details-btn:hover {
+            background-color: #555;
+        }
+
+        .scheme-details {
+            display: none;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 15px;
+        }
+
+        .scheme-details a {
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .scheme-details a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 14px;
+            color: #f5eded;
+            background-color: #060606;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .schemes-container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Government Schemes for Small Businesses in India</h1>
+        <p>Explore the various government schemes and programs available to support small businesses.</p>
+    </header>
+
+    <section class="schemes-container">
+        <!-- Scheme 1 -->
+        <div class="scheme-card" onclick="toggleDetails('scheme1')">
+            <h2>Startup India</h2>
+            <p>An initiative to boost startups by providing tax exemptions, funding, and more.</p>
+            <button class="details-btn">More Details</button>
+            <div id="scheme1" class="scheme-details">
+                <p>Startup India offers tax exemptions for the first three years, easier compliance rules, and funding support for innovative startups.</p>
+                <a href="https://www.startupindia.gov.in/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+
+        <!-- Scheme 2 -->
+        <div class="scheme-card" onclick="toggleDetails('scheme2')">
+            <h2>PMEGP (Prime Minister Employment Generation Programme)</h2>
+            <p>Supports setting up small businesses in urban and rural areas with financial assistance.</p>
+            <button class="details-btn">More Details</button>
+            <div id="scheme2" class="scheme-details">
+                <p>PMEGP helps entrepreneurs set up new micro-enterprises with financial support for business activities.</p>
+                <a href="https://www.kviconline.gov.in/pmegpeportal/pmegphome/index.jsp" target="_blank">Visit Website</a>
+            </div>
+        </div>
+
+        <!-- Scheme 3 -->
+        <div class="scheme-card" onclick="toggleDetails('scheme3')">
+            <h2>MUDRA Loans</h2>
+            <p>Micro-financing support to small businesses, especially in the manufacturing and retail sectors.</p>
+            <button class="details-btn">More Details</button>
+            <div id="scheme3" class="scheme-details">
+                <p>MUDRA offers financial support up to ₹10 lakhs to small businesses in various sectors like manufacturing, retail, and services.</p>
+                <a href="https://www.mudra.org.in/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+
+        <!-- Scheme 4 -->
+        <div class="scheme-card" onclick="toggleDetails('scheme4')">
+            <h2>SIDBI (Small Industries Development Bank of India)</h2>
+            <p>Financial services and support for the growth of MSMEs, offering loans and guarantees.</p>
+            <button class="details-btn">More Details</button>
+            <div id="scheme4" class="scheme-details">
+                <p>SIDBI offers MSMEs access to financial products like term loans, working capital, and credit guarantees to foster growth.</p>
+                <a href="https://www.sidbi.in/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+
+        <!-- Scheme 5 -->
+        <div class="scheme-card" onclick="toggleDetails('scheme5')">
+            <h2>CGTMSE (Credit Guarantee Fund Scheme for MSMEs)</h2>
+            <p>Provides collateral-free credit to micro and small businesses for setting up and expanding their businesses.</p>
+            <button class="details-btn">More Details</button>
+            <div id="scheme5" class="scheme-details">
+                <p>CGTMSE offers collateral-free loans to micro and small enterprises, enabling them to secure funding without assets.</p>
+                <a href="https://www.cgtmse.in/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+
+        <!-- Scheme 6 -->
+        <div class="scheme-card" onclick="toggleDetails('scheme6')">
+            <h2>Stand Up India Scheme</h2>
+            <p>Supports SC, ST, and women entrepreneurs to start greenfield enterprises.</p>
+            <button class="details-btn">More Details</button>
+            <div id="scheme6" class="scheme-details">
+                <p>Stand Up India provides loans to SC, ST, and women entrepreneurs for setting up new businesses, including manufacturing, services, and trading.</p>
+                <a href="https://www.standupmitra.in/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+
+        <!-- Scheme 7 -->
+        <div class="scheme-card" onclick="toggleDetails('scheme7')">
+            <h2>Atal Innovation Mission</h2>
+            <p>Supports innovation and entrepreneurship through setting up incubation centers and funding for startups.</p>
+            <button class="details-btn">More Details</button>
+            <div id="scheme7" class="scheme-details">
+                <p>Atal Innovation Mission (AIM) supports the creation of incubation centers and funds to promote innovation and entrepreneurship in India.</p>
+                <a href="https://aim.gov.in/" target="_blank">Visit Website</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Government Schemes for Small Businesses | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Function to toggle the visibility of the scheme details
+        function toggleDetails(schemeId) {
+            const details = document.getElementById(schemeId);
+            details.style.display = details.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Enrollment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2980b9;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #2980b9;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Business Enrollment Form</h1>
+    <form id="businessForm" enctype="multipart/form-data">
+
+        <!-- Owner/Founder Information -->
+        <fieldset>
+            <legend>Owner/Founder Information</legend>
+            <label for="founderName">Founder's Name:</label>
+            <input type="text" id="founderName" name="founderName" required>
+
+            <label for="founderQualifications">Founder Qualifications:</label>
+            <input type="text" id="founderQualifications" name="founderQualifications" required>
+
+            <label for="founderExperience">Founder Experience:</label>
+            <textarea id="founderExperience" name="founderExperience" rows="4" required></textarea>
+
+            <label for="teamSize">Team Size:</label>
+            <select id="teamSize" name="teamSize" required>
+                <option value="1-5">1-5</option>
+                <option value="6-20">6-20</option>
+                <option value="21-50">21-50</option>
+                <option value="50+">50+</option>
+            </select>
+        </fieldset>
+
+        <!-- Business Information -->
+        <fieldset>
+            <legend>Business Information</legend>
+            <label for="businessName">Business Name:</label>
+            <input type="text" id="businessName" name="businessName" required>
+
+            <label for="businessStructure">Legal Structure:</label>
+            <select id="businessStructure" name="businessStructure" required>
+                <option value="Sole Proprietorship">Sole Proprietorship</option>
+                <option value="LLC">LLC</option>
+                <option value="Corporation">Corporation</option>
+                <option value="Partnership">Partnership</option>
+            </select>
+
+            <label for="registrationNumber">Business Registration Number:</label>
+            <input type="text" id="registrationNumber" name="registrationNumber">
+
+            <label for="businessLocation">Business Location:</label>
+            <input type="text" id="businessLocation" name="businessLocation" required>
+
+            <label for="businessWebsite">Business Website URL:</label>
+            <input type="url" id="businessWebsite" name="businessWebsite">
+        </fieldset>
+
+        <!-- Business Goals and Strategy -->
+        <fieldset>
+            <legend>Business Goals and Strategy</legend>
+            <label for="businessGoals">Business Goals for the Next 1-2 Years:</label>
+            <textarea id="businessGoals" name="businessGoals" rows="4" required></textarea>
+
+            <label for="growthStrategy">Business Growth Strategy:</label>
+            <textarea id="growthStrategy" name="growthStrategy" rows="4" required></textarea>
+        </fieldset>
+
+        <!-- Business Type and Industry -->
+        <fieldset>
+            <legend>Business Type and Industry</legend>
+            <label for="industry">Business Industry:</label>
+            <select id="industry" name="industry" required>
+                <option value="Technology">Technology</option>
+                <option value="Retail">Retail</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Finance">Finance</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="productsServices">Products/Services Offered:</label>
+            <textarea id="productsServices" name="productsServices" rows="4" required></textarea>
+
+            <label for="targetMarket">Target Market:</label>
+            <input type="text" id="targetMarket" name="targetMarket" required>
+        </fieldset>
+
+        <!-- Legal and Compliance -->
+        <fieldset>
+            <legend>Legal and Compliance</legend>
+            <label for="licensesPermits">Required Licenses or Permits:</label>
+            <input type="text" id="licensesPermits" name="licensesPermits">
+
+            <label for="industryRegulations">Complying with Industry Regulations:</label>
+            <select id="industryRegulations" name="industryRegulations" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </fieldset>
+
+        <!-- Financial Information -->
+        <fieldset>
+            <legend>Financial Information</legend>
+            <label for="annualRevenue">Estimated Annual Revenue:</label>
+            <input type="number" id="annualRevenue" name="annualRevenue" required>
+        </fieldset>
+
+        <!-- Submit Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit">Submit Form</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

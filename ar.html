@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrepreneurship Resources</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Light gray background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        header {
+            background-color: #333; /* Dark gray background */
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 4px solid #555; /* Subtle contrast */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .container {
+            padding: 40px 20px;
+            flex-grow: 1;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background-color: #ffffff; /* White background for sections */
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333; /* Dark gray color for section headings */
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .resource-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .resource-card {
+            background-color: #ffffff; /* White background for cards */
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Light shadow */
+            width: 300px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #ddd; /* Subtle border */
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource-card h3 {
+            color: #333; /* Dark gray color for card titles */
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .resource-card p {
+            color: #555; /* Medium gray text for descriptions */
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        footer {
+            background-color: #333; /* Dark gray background */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .resource-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .section-button {
+            background-color: #555; /* Medium gray button color */
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .section-button:hover {
+            background-color: #333; /* Dark gray hover effect */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Other Resources</h1>
+        <p>Your Guide to Start and Grow a Business</p>
+    </header>
+
+    <div class="container">
+        <!-- Marketing and Sales Section -->
+        <section class="section">
+            <h2>Marketing and Sales</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>Google Ads</h3>
+                    <p>The primary platform for creating and managing pay-per-click (PPC) campaigns on Google’s search engine and its network.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Facebook Tools</h3>
+                    <p>A platform for creating and managing paid advertisements on Facebook and Instagram.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Mailchimp</h3>
+                    <p>A popular email marketing platform that provides tools for creating newsletters, automating email campaigns, and analyzing results.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Explore More Marketing Options</a>
+        </section>
+
+        <!-- Small Finance Section -->
+        <section class="section">
+            <h2>Small Finance Resources</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>Microfinance Institutions</h3>
+                    <p>Access small loans and financial services for startups.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Explore Microfinance</a>
+        </section>
+
+        <!-- Accounting and Financial Tools Section -->
+        <section class="section">
+            <h2>Accounting and Financial Tools</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>Xero</h3>
+                    <p>Accounting software for managing finances and taxes.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>QuickBooks</h3>
+                    <p>Manage your finances and keep track of business expenses.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Discover Accounting Tools</a>
+        </section>
+
+        <!-- Project Management and Collaboration Section -->
+        <section class="section">
+            <h2>Project Management & Collaboration</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>Asana</h3>
+                    <p>Track tasks, projects, and deadlines efficiently.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Slack</h3>
+                    <p>Collaborate and communicate with your team in real-time.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Explore Project Management Tools</a>
+        </section>
+
+        <!-- Marketing and Sales Section -->
+        <section class="section">
+            <h2>Marketing and Sales Resources</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>HubSpot</h3>
+                    <p>CRM and marketing automation platform.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>SendGrid</h3>
+                    <p>Email marketing service for building customer relationships.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Learn About Marketing Tools</a>
+        </section>
+
+        <!-- SEO Tools Section -->
+        <section class="section">
+            <h2>SEO Tools</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>SEMrush</h3>
+                    <p>Comprehensive SEO and marketing toolkit.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Moz</h3>
+                    <p>SEO software for tracking your website's ranking and performance.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Boost Your SEO Knowledge</a>
+        </section>
+
+        <!-- Startup Networks Section -->
+        <section class="section">
+            <h2>Startup Networks</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>Y Combinator</h3>
+                    <p>Join one of the top startup accelerators for growth opportunities.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Techstars</h3>
+                    <p>Accelerator program for startups with mentorship and investment.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Join Startup Networks</a>
+        </section>
+
+        <!-- Legal Resources Section -->
+        <section class="section">
+            <h2>Legal and Regulatory Resources</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h3>LegalZoom</h3>
+                    <p>Legal services to help with company formation and trademarks.</p>
+                </div>
+                <div class="resource-card">
+                    <h3>Clerky</h3>
+                    <p>Legal document creation and filing services for startups.</p>
+                </div>
+            </div>
+            <a href="#" class="section-button">Explore Legal Services</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Entrepreneurship Resources. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

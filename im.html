@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+        }
+
+        .card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .card-header {
+            background: #2e7d32;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.25rem;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card-footer {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-16 px-4 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl font-bold mb-4 tracking-tight">Inventory Management Dashboard</h1>
+            <p class="text-xl opacity-90">Efficient Control, Tracking, and Optimization of Inventory</p>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <div class="container mx-auto px-4 -mt-12">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Inventory Control Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Inventory Control</div>
+                <div class="chart-container">
+                    <canvas id="inventoryChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Manage your inventory levels effectively</p>
+                </div>
+            </div>
+
+            <!-- Tracking Systems Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Tracking Systems</div>
+                <div class="chart-container">
+                    <canvas id="trackingChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Track real-time stock levels and locations</p>
+                </div>
+            </div>
+
+            <!-- Stock Audits Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Stock Audits</div>
+                <div class="chart-container">
+                    <canvas id="auditChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Ensure accuracy and compliance with regular audits</p>
+                </div>
+            </div>
+
+            <!-- Order Management Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Order Management</div>
+                <div class="chart-container">
+                    <canvas id="orderChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Streamline your order processing and fulfillment</p>
+                </div>
+            </div>
+
+            <!-- Inventory Turnover Rate Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Inventory Turnover Rate</div>
+                <div class="chart-container">
+                    <canvas id="turnoverChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Track the efficiency of your inventory management</p>
+                </div>
+            </div>
+
+            <!-- Demand Forecasting Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Demand Forecasting</div>
+                <div class="chart-container">
+                    <canvas id="forecastChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Predict future inventory needs based on demand trends</p>
+                </div>
+            </div>
+
+            <!-- Stock Location & Storage Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Stock Location & Storage</div>
+                <div class="chart-container">
+                    <canvas id="locationChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Optimize storage space and stock distribution</p>
+                </div>
+            </div>
+
+            <!-- Supply Chain Integration Card -->
+            <div class="card bg-white rounded-xl p-6 shadow-lg">
+                <div class="card-header">Supply Chain Integration</div>
+                <div class="chart-container">
+                    <canvas id="supplyChainChart" class="w-full h-64"></canvas>
+                </div>
+                <div class="mt-4 text-center">
+                    <p class="font-semibold text-gray-600">Ensure seamless integration with suppliers and distributors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-600">
+        <p>© 2024 Inventory Management. All Rights Reserved.</p>
+        <p class="text-sm mt-2">Powered by data-driven insights</p>
+    </footer>
+
+    <script>
+        // Inventory Control (Line Chart)
+        const inventoryData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Inventory Levels (in units)',
+                data: [120, 150, 180, 170, 200, 220],
+                fill: false,
+                borderColor: '#4caf50',
+                tension: 0.1,
+            }]
+        };
+
+        const inventoryConfig = {
+            type: 'line',
+            data: inventoryData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: { x: { beginAtZero: true }, y: { beginAtZero: true } }
+            }
+        };
+
+        // Tracking Systems (Bar Chart)
+        const trackingData = {
+            labels: ['Warehouse A', 'Warehouse B', 'Warehouse C'],
+            datasets: [{
+                label: 'Stock Available (in units)',
+                data: [500, 450, 600],
+                backgroundColor: '#ff9800',
+                borderColor: '#ff9800',
+                borderWidth: 1
+            }]
+        };
+
+        const trackingConfig = {
+            type: 'bar',
+            data: trackingData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        };
+
+        // Stock Audits (Pie Chart)
+        const auditData = {
+            labels: ['Passed', 'Failed'],
+            datasets: [{
+                data: [80, 20],
+                backgroundColor: ['#4caf50', '#f44336'],
+            }]
+        };
+
+        const auditConfig = {
+            type: 'pie',
+            data: auditData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: function(tooltipItem) { return tooltipItem.label + ': ' + tooltipItem.raw + '%'; } } }
+                }
+            }
+        };
+
+        // Order Management (Line Chart)
+        const orderData = {
+            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+            datasets: [{
+                label: 'Orders Fulfilled (in units)',
+                data: [800, 950, 1200, 1400],
+                fill: false,
+                borderColor: '#2196f3',
+                tension: 0.1,
+            }]
+        };
+
+        const orderConfig = {
+            type: 'line',
+            data: orderData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: { x: { beginAtZero: true }, y: { beginAtZero: true } }
+            }
+        };
+
+        // Inventory Turnover Rate (Bar Chart)
+        const turnoverData = {
+            labels: ['2019', '2020', '2021', '2022'],
+            datasets: [{
+                label: 'Turnover Rate (times/year)',
+                data: [3.5, 4.2, 4.8, 5.0],
+                backgroundColor: '#8bc34a',
+                borderColor: '#8bc34a',
+                borderWidth: 1
+            }]
+        };
+
+        const turnoverConfig = {
+            type: 'bar',
+            data: turnoverData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        };
+
+        // Demand Forecasting (Line Chart)
+        const forecastData = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Forecasted Demand (in units)',
+                data: [300, 350, 400, 450, 500, 550],
+                fill: false,
+                borderColor: '#ff5722',
+                tension: 0.1,
+            }]
+        };
+
+        const forecastConfig = {
+            type: 'line',
+            data: forecastData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: { x: { beginAtZero: true }, y: { beginAtZero: true } }
+            }
+        };
+
+        // Stock Location & Storage (Pie Chart)
+        const locationData = {
+            labels: ['Warehouse A', 'Warehouse B', 'Warehouse C'],
+            datasets: [{
+                data: [40, 35, 25],
+                backgroundColor: ['#ff9800', '#2196f3', '#8bc34a'],
+            }]
+        };
+
+        const locationConfig = {
+            type: 'pie',
+            data: locationData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: function(tooltipItem) { return tooltipItem.label + ': ' + tooltipItem.raw + '%'; } } }
+                }
+            }
+        };
+
+        // Supply Chain Integration (Doughnut Chart)
+        const supplyChainData = {
+            labels: ['Suppliers', 'Distributors', 'Retailers'],
+            datasets: [{
+                data: [50, 30, 20],
+                backgroundColor: ['#4caf50', '#2196f3', '#f44336'],
+            }]
+        };
+
+        const supplyChainConfig = {
+            type: 'doughnut',
+            data: supplyChainData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: function(tooltipItem) { return tooltipItem.label + ': ' + tooltipItem.raw + '%'; } } }
+                }
+            }
+        };
+
+        // Rendering the charts
+        window.onload = function () {
+            new Chart(document.getElementById('inventoryChart'), inventoryConfig);
+            new Chart(document.getElementById('trackingChart'), trackingConfig);
+            new Chart(document.getElementById('auditChart'), auditConfig);
+            new Chart(document.getElementById('orderChart'), orderConfig);
+            new Chart(document.getElementById('turnoverChart'), turnoverConfig);
+            new Chart(document.getElementById('forecastChart'), forecastConfig);
+            new Chart(document.getElementById('locationChart'), locationConfig);
+            new Chart(document.getElementById('supplyChainChart'), supplyChainConfig);
+        };
+    </script>
+</body>
+
+</html>
